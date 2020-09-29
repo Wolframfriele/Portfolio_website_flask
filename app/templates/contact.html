@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="left-half">
+        <h2>Utrecht based, with over 4 years of working experience in the field of Animation.</h2>
+        <p>For questions and inquires about collaboration opportunities you can send an email to <a href="mailto:hello@wolframfriele.com" target="_blank">hello@wolframfriele.com</a>
+            for Hogeschool Utrecht related items you can use <a href="mailto:wolfram.friele@student.hu.nl" target="_blank">wolfram.friele@student.hu.nl</a></p>
+        <p id="phone">In a hurry? Call me at <a href="tel:+31681841122">06-81 84 1122</a></p>
+    </section>
+    <section>
+        <img src="static/img/radio-telescope-small.jpg" srcset="static/img/radio-telescope.jpg" alt="" class="img-left">
+        <h1 class="title-right">PLEASE REACH OUT,</h1>
+        <form action="">
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your name">
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" placeholder="Your email">
+
+            <label for="message">Message:</label>
+            <textarea name="message" id="message" cols="30" rows="10" placeholder="Your message"></textarea>
+
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+    <section>
+        <h1 class="title-left">DON'T BE SHY</h1>
+    </section>
+{% endblock %}

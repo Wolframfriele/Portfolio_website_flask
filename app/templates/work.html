@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<img src="static/img/data-landscape-small.webp" srcset="static/img/data-landscape.jpg"  alt="" class="cover-image">
+    <section class="left-half">
+        <h2>AI Engineer in training with a background in Motion Design and 3D Animation.</h2>
+        <p>Interrested in working on projects that deal with problems like climate change, filter bubbles and fake news.</p>
+        <h4 class="selection-work">Selection of Work_</h4>
+    </section>
+    <section class="project">
+        <img src="static/img/logic.jpg" alt="" class="project-secondary-img-left">
+        <img src="static/img/spacetime.webp" alt="" class="project-main-img">
+        <h1 class="title-right">SHOWREEL 2020</h1>
+        <p class="paragraph-right">The last 4 years of motion design projects
+            I have had the pleasure of collaborating on.
+            From personal projects to client work
+            and process.
+            <br>
+            <br>
+            <em><a href="{{ url_for('project') }}">See project</a></em></p>
+    </section>
+    <section>
+        <a href="{{ url_for('contact') }}" class="contact-button">SAY HELLO</a>
+    </section>
+{% endblock %}

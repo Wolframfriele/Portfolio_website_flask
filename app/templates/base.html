@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+    <title>{{ title }} | Wolfram Friele</title>
+    {% else %}
+    <title>Wolfram Friele</title>
+    {% endif %}
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel=”shortcut icon” href=“img/favicon.ico”>
+</head>
+<body>
+    <header>
+        <div id="header-left">
+            <img src="static/img/header-logo.webp" alt="" id="logo">
+            <h3>Wolfram Friele</h3>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}" class="current-page">Work</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    {% block content %}{% endblock %}
+    <footer>
+        <div id="footer-links">
+            <h4>Find me on_</h4>
+            <ul>
+                <li><a href="https://www.linkedin.com/in/wolframfriele" target="_blank">LinkedIn</a></li>
+                <li><a href="https://www.github.com/Wolframfriele" target="_blank">GitHub</a></li>
+                <li><a href="https://www.instagram.com/wolframfriele/" target="_blank">Instagram</a></li>
+                <li><a href="https://www.behance.net/wolframfriele" target="_blank">Behance</a></li>
+                <li><a href="https://www.twitter.com/Wolframfriele" target="_blank">Twitter</a></li>
+                <!--
+                <li><a href="https://medium.com/@wolframfriele">Medium</a></li>
+                -->
+            </ul>
+        </div>
+        <p id="copyright">Wolfram Friele 2020 &copy;</p>
+    </footer>
+</body>
+</html>
