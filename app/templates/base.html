@@ -19,9 +19,21 @@
         </div>
         <nav>
             <ul>
-                <li><a href="{{ url_for('index') }}" class="current-page">Work</a></li>
-                <li><a href="{{ url_for('about') }}">About</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                {% if title == 'Work' %}
+                    <li><a href="{{ url_for('index') }}" class="current-page">Work</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('index') }}">Work</a></li>
+                {% endif %}
+                {% if title == 'About' %}
+                    <li><a href="{{ url_for('about') }}" class="current-page">About</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                {% endif %}
+                {% if title == 'Contact' %}
+                    <li><a href="{{ url_for('contact') }}" class="current-page">Contact</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
