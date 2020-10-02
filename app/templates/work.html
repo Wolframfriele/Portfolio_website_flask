@@ -6,18 +6,29 @@
         <p>Interrested in working on projects that deal with problems like climate change, filter bubbles and fake news.</p>
         <h4 class="selection-work">Selection of Work_</h4>
     </section>
-    <section class="project">
-        <img src="static/img/logic.jpg" alt="" class="project-secondary-img-left">
-        <img src="static/img/spacetime.webp" alt="" class="project-main-img">
-        <h1 class="title-right">SHOWREEL 2020</h1>
-        <p class="paragraph-right">The last 4 years of motion design projects
-            I have had the pleasure of collaborating on.
-            From personal projects to client work
-            and process.
-            <br>
-            <br>
-            <em><a href="{{ url_for('project') }}">See project</a></em></p>
-    </section>
+    {% for project in projects %}
+        {% if loop.index is divisibleby 2 %}
+            <section class="project">
+            <img src="{{ project.secondary_image }}" alt="" class="project-secondary-img-right">
+            <img src="{{ project.main_image }}" alt="" class="project-main-img">
+            <h1 class="title-left">{{ project.name }}</h1>
+            <p class="paragraph-left">{{ project.short_description }}
+                <br>
+                <br>
+                <em><a href="{{ url_for('project') }}">See project</a></em></p>
+            </section>
+        {% else %}
+            <section class="project">
+            <img src="{{ project.secondary_image }}" alt="" class="project-secondary-img-left">
+            <img src="{{ project.main_image }}" alt="" class="project-main-img">
+            <h1 class="title-right">{{ project.name }}</h1>
+            <p class="paragraph-right">{{ project.short_description }}
+                <br>
+                <br>
+                <em><a href="{{ url_for('project') }}">See project</a></em></p>
+            </section>
+        {% endif %}
+    {% endfor %}
     <section>
         <a href="{{ url_for('contact') }}" class="contact-button">SAY HELLO</a>
     </section>

@@ -58,6 +58,9 @@ coverage.xml
 .pytest_cache/
 pytestdebug.log
 
+#Database
+app.db
+
 # Translations
 *.mo
 *.pot
