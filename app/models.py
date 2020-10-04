@@ -11,6 +11,7 @@ from app import db
 #     message = StringField('Message', validators=[DataRequired()])
 #     submit = SubmitField('Submit')
 
+# Setting up the table for project entries
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
@@ -25,6 +26,7 @@ class Project(db.Model):
     def __repr__(self):
         return '<Project {}' .format(self.name)
 
+#Setting up the table to extend project descriptions
 class ProjectSection(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))

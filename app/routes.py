@@ -6,7 +6,7 @@ from app.models import Project, ProjectSection
 @app.route('/index')
 @app.route('/work')
 def index():
-    projects = Project.query.all()
+    projects = Project.query.all()[::-1] #Requests the projects fom the database and orders them recent to older
     return render_template('work.html', title='Work', projects=projects)
 
 @app.route('/about')
