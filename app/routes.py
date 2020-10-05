@@ -17,6 +17,7 @@ def about():
 def contact():
     return render_template('contact.html', title='Contact')
 
-@app.route('/project')
-def project():
-    return render_template('project.html', title='Project')
+@app.route('/project/<url_name>')
+def project(url_name):
+    project = Project.query.filter_by(url_name=url_name).first_or_404()
+    return render_template('project.html', title=project.name, project=project)

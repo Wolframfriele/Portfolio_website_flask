@@ -22,6 +22,7 @@ class Project(db.Model):
     long_description = db.Column(db.Text)
     video = db.Column(db.Text)
     project_section = db.relationship('ProjectSection', backref='main_project_info', lazy='dynamic')
+    url_name = db.Column(db.String(64))
     
     def __repr__(self):
         return '<Project {}' .format(self.name)
