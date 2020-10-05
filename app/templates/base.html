@@ -8,14 +8,14 @@
     {% else %}
     <title>Wolfram Friele</title>
     {% endif %}
-    <link rel="stylesheet" href="static/css/styles.css">
-    <link rel=”shortcut icon” href=“img/favicon.ico”>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel=”shortcut icon” href=“{{ url_for('static', filename='img/favicon.ico') }}”>
 </head>
 <body>
     <header>
         <div id="header-left">
             <a href="{{ url_for('index') }}">
-                <img src="static/img/header-logo.png" alt="" id="logo">
+                <img src="{{ url_for('static', filename='/img/header-logo.png') }}" alt="" id="logo">
                 <h3>Wolfram Friele</h3>
             </a>
         </div>

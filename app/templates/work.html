@@ -9,23 +9,24 @@
     {% for project in projects %}
         {% if loop.index is divisibleby 2 %}
             <section class="project">
-            <img src="{{ project.secondary_image }}" alt="" class="project-secondary-img-right">
-            <img src="{{ project.main_image }}" alt="" class="project-main-img">
+            <img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="" class="project-secondary-img-right">
+            <img src="{{ url_for('static', filename='img/' + project.main_image) }}" alt="" class="project-main-img">
             <h1 class="title-left">{{ project.name }}</h1>
             <p class="paragraph-left">{{ project.short_description }}
                 <br>
                 <br>
-                <em><a href="{{ url_for('project') }}">See project</a></em></p>
+                {{ project.url_name }}
+                <em><a href="{{ url_for('project', url_name=project.url_name) }}">See project</a></em></p>
             </section>
         {% else %}
             <section class="project">
-            <img src="{{ project.secondary_image }}" alt="" class="project-secondary-img-left">
-            <img src="{{ project.main_image }}" alt="" class="project-main-img">
+            <img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="" class="project-secondary-img-left">
+            <img src="{{ url_for('static', filename='img/' + project.main_image) }}" alt="" class="project-main-img">
             <h1 class="title-right">{{ project.name }}</h1>
             <p class="paragraph-right">{{ project.short_description }}
                 <br>
                 <br>
-                <em><a href="{{ url_for('project') }}">See project</a></em></p>
+                <em><a href="{{ url_for('project', url_name=project.url_name) }}">See project</a></em></p>
             </section>
         {% endif %}
     {% endfor %}
