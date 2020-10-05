@@ -15,7 +15,6 @@
             <p class="paragraph-left">{{ project.short_description }}
                 <br>
                 <br>
-                {{ project.url_name }}
                 <em><a href="{{ url_for('project', url_name=project.url_name) }}">See project</a></em></p>
             </section>
         {% else %}

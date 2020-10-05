@@ -1,19 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-<img src="static/img/logic.jpg" alt="" class="cover-image">
+<img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="" class="cover-image">
     <section>
-        <h1 class="title-left">SHOWREEL 2020</h1>
+        <h1 class="title-left">{{ project.name }}</h1>
     </section>
     <section>
-        <iframe src="https://player.vimeo.com/video/163702016" width="1085" height="610" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        <iframe src="{{ project.video }}" width="1085" height="610" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
     </section>
     <section>
-        <div id="showreel-01"></div>
-        <div id="showreel-02"></div>
         <div class="paragraph-right">
-            <h4>April 2016_</h4>
-            <p>End of an era finally off the work I have produced over the past 5 years while working at Onesize and MediaMonks.
-                Besides proffesional work I have produced lot's of passion projects small and big. To see more about my role with all of the projects you can check out the subtitles.</p>
+            <h4>{{ project.date.strftime('%b %Y') }}_</h4>
+            <p>{{ project.long_description }}</p>
         </div>
     </section>
     <section>
