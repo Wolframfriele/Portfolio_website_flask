@@ -1,89 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
 <section class="left-half">
-        <h2>From 3D animation to AI engineering.</h2>
-        <p>I’ve always been passionate about science, technology, and communication.
-            Now I want to use my skills to leave the world better than I found it.</p>
+        <h2>{{ static.headline_about }}</h2>
+        <p>{{ static.subline_about }}</p>
     </section>
     <section>
         <img src="static/img/portrait-wolf-small.webp" srcset="static/img/portrait-wolf.jpg" alt="" class="img-left">
         <h1 class="title-right">HELLO, I'M WOLF</h1>
-        <p class="paragraph-right">For the last 8 years I’ve been working as a 3D Motion Designer at a few different companies in Amsterdam.
-            I’ve always been interested in the intersection of science, technology, and communication though, and my favorite projects
-            have been the ones that unite all three.
-            <br>
-            I recently decided to change my trajectory and move out of advertising and into the field of AI.
-            I’m now in my first year of the Open-ICT program at the Hogeschool Utrecht.
-            <br>
-            When not at school or work, you’ll find me out puzzling through a bouldering problem or running through the woods.</p>
+        <div class="paragraph-right">{{ static.paragraph_about | safe }}</div>
     </section>
     <section>
         <img src="static/img/man-in-front-of-mountains-small.webp" srcset="static/img/man-in-front-of-mountains.jpg" alt="" class="img-right">
         <h1 class="title-left">CURRICULUM VITAE</h1>
         <div id="paragraph-left-cv">
             <h4>Experience_</h4>
-            <p>2018 - current Motion Designer at Onesize</p>
+            {% for cv in cvs %}
+            <p>{{ cv.start.strftime('%b %Y') }} - {% if cv.end == None %}Current{% else %}{{ cv.end.strftime('%b %Y') }}{% endif %} {{ cv.workplace | safe }}</p>
                 <p class="indent">
                     <em>
-                    Onesize creates high-end, design-driven productions for film/TV
-                    and digital media. We develop new ideas, new techniques, even
-                    new tools, all wrapped-up in a distinct visual style that pushes
-                    the boundaries of visual experience.
+                    {{ cv.paragraph }}
                     </em>
                 </p>
-            <p>2016 - 2018 Animator at Mediamonks</p>
-                <p class="indent">
-                    <em>
-                    MediaMonks is a global creative production partner. We work
-                    with the world’s leading agencies, biggest brands and innovative
-                    media and technology companies. We turn ideas, strategy and
-                    IP into award-winning campaigns, film, content, products and
-                    platforms.
-                    </em>
-                </p>
-            <p>2015 - 2016 Intern at Onesize (Half a year)</p>
-                <p class="indent">
-                    <em>
-                    Onesize creates high-end, design-driven productions for film/TV
-                    and digital media. We develop new ideas, new techniques, even
-                    new tools, all wrapped-up in a distinct visual style that pushes
-                    the boundaries of visual experience.
-                    </em>
-                </p>
-            <p>2012 - 2015 Co-Owner of Wallfiller</p>
-                <p class="indent">
-                    <em>
-                    Wallfiller is an animation studio specialised in the creation of
-                    projection mappings. Founded from a shared vision about
-                    immersive storytelling. We have enjoyed working for companies
-                    like: Rabobank, Ricoh, Phillips, Hyster en Björn Borg.
-                    </em>
-                </p>
+            {% endfor %}
         </div>
         <div class="paragraph-right-2">
             <h4 class="title-right">Courses_</h4>
-        <p>Brilliant.org  Introduction to Neural Networks</p>
-            <p class="indent">
-                <em>
-                In this course, you'll dissect the internal machinery of artificial
-                neural nets through hands-on experimentation, not hairy
-                mathematics. You'll develop intuition about the kinds of problems
-                they are suited to solve, and by the end you’ll be ready to dive
-                into the algorithms, or build one for yourself.
-                </em>
-            </p>
-        <p>Mograph Mentor full year online program</p>
-            <p class="indent">
-                <em>
-                Mograph Mentor is an online motion graphics training program,
-                with an emphasis on career development. We save you time and
-                money, by connecting you to industry professionals who will
-                work with you to grow your portfolio and your skill set. This
-                program is for students who are looking to pursue a full time
-                career as a motion designer.
-                My mentors during this program were Ryan Summers and Lucas Brooking.
-                </em>
-            </p>
+            {% for course in courses %}
+            <p>{{ course.course_name | safe }}</p>
+                <p class="indent">
+                    <em>
+                    {{ course.paragraph }}
+                    </em>
+                </p>
+            {% endfor %}
         </div>
     </section>
     <section>

@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 <section class="left-half">
-        <h2>Let’s get in touch</h2>
-        <p>I’m Utrecht based and am looking for opportunities in the Randstad.
-            <br>
-            Hate forms? Send a message to <a href="mailto:hello@wolframfriele.com" target="_blank">hello@wolframfriele.com</a> and I’ll get back to you soon.</a></p>
-        <p id="phone">In a hurry? Call me at <a href="tel:+31681841122">06-81 84 1122</a></p>
+        <h2>{{ static.headline_contact }}</h2>
+        <p>{{ static.subline_contact | safe }}</p>
+        <p id="phone">{{ static.hidden_subline_contact | safe }}</a></p>
     </section>
     <section>
-        <img src="{{ url_for('static', filename='img/radio-telescope.jpg') }}" alt="" class="img-left">
+        <img src="{{ url_for('static', filename='img/' + static.image_contact) }}" alt="" class="img-left">
         <h1 class="title-right">PLEASE REACH OUT,</h1>
         <form action="">
 

@@ -2,8 +2,8 @@
 {% block content %}
 <img src="static/img/data-landscape-small.webp" srcset="static/img/data-landscape.jpg"  alt="" class="cover-image">
     <section class="left-half">
-        <h2>AI Engineer-in-Training looking for projects to fight climate change, filter bubbles, and fake news.</h2>
-        <p>I want to use my 8 years of experience in animation and design to make AI communications more credible.</p>
+        <h2>{{ static.headline_work }}</h2>
+        <p>{{ static.subline_work }}</p>
         <h4 class="selection-work">Selection of Work_</h4>
     </section>
     {% for project in projects %}

@@ -13,6 +13,50 @@
             <p>{{ project.long_description }}</p>
         </div>
     </section>
+    {% for section in sections %}
+        {% if loop.index is divisibleby 2 %}
+        <section>
+            {% if section.image_1 != None %}
+                <img src="{{ url_for('static', filename='img/' + section.image_1) }}" alt="" class="project-secondary-img-left">
+            {% endif %}
+            {% if section.image_2 != None %}
+                <img src="{{ url_for('static', filename='img/' + section.image_2) }}" alt="" class="img-center">
+            {% endif %}
+            {% if section.title != None %}
+                <h1 class="title-right">{{ section.title }}</h1>
+                {% if section.paragraph != None %}
+                <p class="paragraph-right">{{ section.paragraph }}</p>
+                {% endif %}
+            {% else %}
+                {% if section.paragraph != None %}
+                <p class="paragraph-right-top">{{ section.paragraph }}</p>
+                {% endif %}
+            {% endif %}
+        </section>
+        {% else %}
+        <section>
+            {% if section.image_1 != None %}
+                <img src="{{ url_for('static', filename='img/' + section.image_1) }}" alt="" class="img-right">
+            {% endif %}
+            {% if section.image_2 != None %}
+                <img src="{{ url_for('static', filename='img/' + section.image_2) }}" alt="" class="img-center">
+            {% endif %}
+            {% if section.image_3 != None %}
+                <img src="{{ url_for('static', filename='img/' + section.image_3) }}" alt="" class="img-left">
+            {% endif %}
+            {% if section.title != None %}
+                <h1 class="title-left">{{ section.title }}</h1>
+                {% if section.paragraph != None %}
+                <p class="paragraph-left">{{ section.paragraph }}</p>
+                {% endif %}
+            {% else %}
+                {% if section.paragraph != None %}
+                <p class="paragraph-left-top">{{ section.paragraph }}</p>
+                {% endif %}
+            {% endif %}
+        </section>
+        {% endif %}
+    {% endfor %}
     <section>
         <a href="{{ url_for('contact') }}" class="contact-button">SAY HELLO</a>
     </section>

@@ -44,14 +44,9 @@
         <div id="footer-links">
             <h4>Find me on_</h4>
             <ul>
-                <li><a href="https://www.linkedin.com/in/wolframfriele" target="_blank">LinkedIn</a></li>
-                <li><a href="https://www.github.com/Wolframfriele" target="_blank">GitHub</a></li>
-                <li><a href="https://www.instagram.com/wolframfriele/" target="_blank">Instagram</a></li>
-                <li><a href="https://www.behance.net/wolframfriele" target="_blank">Behance</a></li>
-                <li><a href="https://www.twitter.com/Wolframfriele" target="_blank">Twitter</a></li>
-                <!--
-                <li><a href="https://medium.com/@wolframfriele">Medium</a></li>
-                -->
+                {% for social in socials %}
+                <li><a href="{{ social.link }}" target="_blank">{{ social.display }}</a></li>
+                {% endfor %}
             </ul>
         </div>
         <p id="copyright">Wolfram Friele 2020 &copy;</p>
