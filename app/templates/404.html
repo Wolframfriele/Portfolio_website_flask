@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="left-half">
+        <h2>Well this is awkward.</h2>
+        <p>But you can go <a href="{{ url_for('index') }}">back</a> to the homepage.</p>
+    </section>
+    <section>
+        <img src="{{ url_for('static', filename='img/404.jpg') }}" alt="" class="img-left">
+        <h1 class="title-right">404 File Not Found</h1>
+    </section>
+{% endblock %}

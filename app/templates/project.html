@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="" class="cover-image">
+    <img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="" class="cover-image">
     <section>
         <h1 class="title-left">{{ project.name }}</h1>
     </section>

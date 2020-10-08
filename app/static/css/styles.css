@@ -133,6 +133,7 @@ nav a:hover {
 
 /* Contact Page */
 
+input[type=password],
 input[type=text] {
     width: 100%;
     padding: 12px;
@@ -214,12 +215,8 @@ footer li {
         grid-column: 5 / 8;
     }
     nav ul {
-        display: flex;
-        justify-content: right;
+        justify-content: flex-end;
         margin: 1em 0;
-        padding: 0;
-        width: 100%;
-        align-self: end;
     }
 
     nav li {

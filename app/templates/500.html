@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="left-half">
+        <h2>An unexpected error has occurred.</h2>
+        <p>The administrator has been notified. Sorry for the inconvenience! Go <a href="{{ url_for('index') }}">back</a>.</p>
+    </section>
+    <section>
+        <img src="{{ url_for('static', filename='img/logic.jpg') }}" alt="" class="img-left">
+        <h1 class="title-right">500 Internal Server Error</h1>
+    </section>
+{% endblock %}

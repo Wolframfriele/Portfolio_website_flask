@@ -1,9 +1,7 @@
-from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, SubmitField, validators
-from wtforms.validators import DataRequired
-from wtforms.fields.html5 import EmailField
-from datetime import date
-from app import db
+from app import db, login
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
+from datetime import datetime
 
 
 #Setting up table for Semi-Static elements
@@ -75,8 +73,29 @@ class SocialMediaLink(db.Model):
     link = db.Column(db.String(255))
     display = db.Column(db.String(255))
 
-# class ContactForm(FlaskForm):
-#     name = StringField('Name', validators=[DataRequired()])
-#     email = EmailField('Email', validators=[DataRequired(), validators.Email()])
-#     message = StringField('Message', validators=[DataRequired()])
-#     submit = SubmitField('Submit')
+#Setting up tables for messages
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    name = db.Column(db.String(120))
+    email = db.Column(db.String(120))
+    message = db.Column(db.Text)
+
+#setting up a table for Users
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), unique=True)
+    email = db.Column(db.String(120), unique=True)
+    password_hash = db.Column(db.String(128))
+
+    def __repr__(self):
+        return '<User {}>' .format(self.username)
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
