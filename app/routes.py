@@ -3,6 +3,8 @@ from flask_login import current_user, login_user, login_required, logout_user, l
 from app import app, db
 from app.forms import LoginForm, ContactForm
 from app.models import StaticElements, Project, ProjectSection, CvEntry, CourseEntry, SocialMediaLink, User, Message
+from app.email import send_confirmation_email, send_message_email
+
 
 @app.route('/')
 @app.route('/index')
@@ -13,6 +15,7 @@ def index():
     socials = SocialMediaLink.query.order_by(SocialMediaLink.order).all()
     return render_template('work.html', title='Work', projects=projects, static=static, socials=socials)
 
+
 @app.route('/about')
 def about():
     static = StaticElements.query.first()
@@ -20,6 +23,7 @@ def about():
     courses = CourseEntry.query.order_by(CourseEntry.order).all()[::-1]
     socials = SocialMediaLink.query.order_by(SocialMediaLink.order).all()
     return render_template('about.html', title='About', static=static, cvs=cvs, courses=courses, socials=socials)
+
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
@@ -30,9 +34,12 @@ def contact():
         message = Message(name=form.name.data, email=form.email.data, message=form.message.data)
         db.session.add(message)
         db.session.commit()
+        send_message_email(message)
+        send_confirmation_email(message)
         flash("You're message has been sent! You will also receive confirmation by email.")
         return redirect(url_for('contact'))
     return render_template('contact.html', title='Contact', static=static, form=form, socials=socials)
+
 
 @app.route('/project/<url_name>')
 def project(url_name):
@@ -41,16 +48,19 @@ def project(url_name):
     socials = SocialMediaLink.query.order_by(SocialMediaLink.order).all()
     return render_template('project.html', title=project.name, project=project, sections=sections, socials=socials)
 
+
 @app.errorhandler(404)
 def not_found_error(error):
     socials = SocialMediaLink.query.order_by(SocialMediaLink.order).all()
     return render_template('404.html', socials=socials), 404
+
 
 @app.errorhandler(500)
 def internal_error(error):
     db.session.rollback()
     socials = SocialMediaLink.query.order_by(SocialMediaLink.order).all()
     return render_template('500.html', socials=socials), 500
+
 
 @app.route('/behind-the-scenes', methods=['GET', 'POST'])
 def login():
@@ -67,11 +77,13 @@ def login():
     socials = SocialMediaLink.query.order_by(SocialMediaLink.order).all()
     return render_template('log-in.html', title='Log In', form=form, socials=socials)
 
+
 @app.route('/logout')
 def logout():
     logout_user()
     flash("You have been logged out!")
     return redirect(url_for('index'))
+
 
 @app.route('/website-content')
 @login_required

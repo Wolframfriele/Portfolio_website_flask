@@ -39,18 +39,6 @@
             </ul>
         </nav>
     </header>
-
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <section>
-                <ul class="paragraph-left">
-                    {% for message in messages %}
-                    <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            </section>
-        {% endif %}
-        {% endwith %}
     {% block content %}{% endblock %}
     <footer>
         <div id="footer-links">

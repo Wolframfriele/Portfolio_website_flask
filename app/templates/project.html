@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-    <img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="" class="cover-image">
+    {% if project.video != None %}
     <section>
-        <h1 class="title-left">{{ project.name }}</h1>
+        <div class="iframe-container">
+         <iframe src="{{ project.video }}" width="1085" height="610" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
     </section>
+    {% endif %}
     <section>
-        <iframe src="{{ project.video }}" width="1085" height="610" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </section>
-    <section>
+        <img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="" class="img-left">
+        <h1 class="title-right">{{ project.name }}</h1>
         <div class="paragraph-right">
             <h4>{{ project.date.strftime('%b %Y') }}_</h4>
             <p>{{ project.long_description }}</p>

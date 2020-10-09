@@ -1,0 +1,7 @@
+You Have received a Message from {{ message.name }}.
+
+Message:
+{{ message.message }}
+
+Reply to:
+{{ message.email }}
