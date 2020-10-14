@@ -1,6 +1,79 @@
 {% extends 'admin_base.html' %}
 {% block content %}
     <section>
+        <form action="" method="post" novalidate>
+            {{ edit_about.hidden_tag() }}
+            <p>
+                {{ edit_about.headline_about.label }}<br>
+                {{ edit_about.headline_about }}
+            </p>
+            <p>
+                {{ edit_about.subline_about.label }}<br>
+                {{ edit_about.subline_about }}
+            </p>
+            <p>
+                {{ edit_about.paragraph_about.label }}<br>
+                {{ edit_about.paragraph_about }}
+            </p>
+            <p>{{ edit_about.submit_about }}</p>
+        <hr>
+        </form>
+    </section>
+    <section>
+        <form action="" method="post" novalidate>
+            {{ add_cv.hidden_tag() }}
+                        <p>
+                {{ add_cv.workplace.label }}<br>
+                {{ add_cv.workplace }}
+            </p>
+            <p>
+                Start and End date <br>
+                {{ add_cv.start }}{{ add_cv.end }}</p>
+            <p>
+                {{ add_cv.paragraph.label }}<br>
+                {{ add_cv.paragraph }}
+            </p>
+            <p>
+                {{ add_cv.submit_cv }}
+            </p>
+            <hr>
+        </form>
+        <form action="" method="post" novalidate>
+        {% for cv in cvs %}
+            <div>
+                <P>{{ cv.start.strftime('%b %Y') }} till {% if cv.end == None %}Current
+                {% else %}{{ cv.end.strftime('%b %Y') }}{% endif %} for {{ cv.workplace }}</P>
+                <p>{{ cv.paragraph }}</p>
+                <a href="{{ url_for('website_content_cv', id=cv.id) }}">Edit Entry</a>
+            </div>
+        {% endfor %}
+            <hr>
+        </form>
+    </section>
+    <section>
+        <form action="" method="post" novalidate>
+            {{ add_course.hidden_tag() }}
+            <p>
+                {{ add_course.course_name.label }}<br>
+                {{ add_course.course_name }}
+            </p>
+            <p>
+                {{ add_course.paragraph.label }}<br>
+                {{ add_course.paragraph }}
+            </p>
+            <p>{{ add_course.submit_course }}</p>
+        </form>
+        <ul id="sortCourses">
+        {% for course in courses %}
+            <li id="item-{{ course.order }}">
+                <p>{{ course.course_name }}</p>
+                <p>{{ course.paragraph }}</p>
+                <a href="{{ url_for('website_content_course', id=course.id) }}">Edit Entry</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </section>
+    <section>
 
     </section>
 {% endblock %}

@@ -10,12 +10,14 @@
         <div class="paragraph-right">{{ static.paragraph_about | safe }}</div>
     </section>
     <section>
-        <img src="static/img/man-in-front-of-mountains-small.webp" srcset="static/img/man-in-front-of-mountains.jpg" alt="" class="img-right">
+        <img src="static/img/man-in-front-of-mountains-small.webp" srcset="static/img/man-in-front-of-mountains.jpg"
+             alt="" class="img-right">
         <h1 class="title-left">CURRICULUM VITAE</h1>
         <div id="paragraph-left-cv">
             <h4>Experience_</h4>
             {% for cv in cvs %}
-            <p>{{ cv.start.strftime('%b %Y') }} - {% if cv.end == None %}Current{% else %}{{ cv.end.strftime('%b %Y') }}{% endif %} {{ cv.workplace | safe }}</p>
+            <p>{{ cv.start.strftime('%b %Y') }} - {% if cv.end == None %}Current
+            {% else %}{{ cv.end.strftime('%b %Y') }}{% endif %} {{ cv.workplace | safe }}</p>
                 <p class="indent">
                     <em>
                     {{ cv.paragraph }}

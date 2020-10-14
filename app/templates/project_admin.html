@@ -2,15 +2,6 @@
 {% block content %}
     <section>
         <form action="" enctype=multipart/form-data method="post" novalidate>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                    <ul class="flashed-message">
-                        {% for message in messages %}
-                            <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-            {% endif %}
-            {% endwith %}
             {{ edit_project.hidden_tag() }}
             <p>
                 {{ edit_project.video.label }}<br>
@@ -53,6 +44,38 @@
                 {{ edit_project.url_name }}
             </p>
             <p>{{ edit_project.submit_editproject }}</p>
+            <hr>
+        </form>
+    </section>
+    <section>
+    <ul class="project-section">
+    {% for section in project_sections %}
+        <li>
+            <a href="{{ url_for('website_content_section', url_name=project.url_name, id=section.id) }}">
+                Edit Section {{ section.order }}</a>
+            {% if section.title %}
+                <h2>{{ section.title }}</h2>
+            {% endif %}
+            {% if section.paragraph %}
+                <p>{{ section.paragraph }}</p>
+            {% endif %}
+            {% if section.image_1 %}
+                <img src="{{ url_for('static', filename='img/' + section.image_1) }}" alt="">
+            {% endif %}
+            {% if section.image_2 %}
+                <img src="{{ url_for('static', filename='img/' + section.image_2) }}" alt="">
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+    </section>
+    <section>
+        <form action="" method="post" novalidate>
+            {{ add_section.hidden_tag() }}
+            <p>
+                {{ add_section.submit_section }}
+                {{ add_section.title }}
+            </p>
         </form>
     </section>
     <section>

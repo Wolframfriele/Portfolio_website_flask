@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, PasswordField, FileField, BooleanField, SubmitField, DateField, IntegerField
+from wtforms import StringField, TextAreaField, PasswordField, FileField, BooleanField, SubmitField, \
+    DateField, IntegerField
 from wtforms.validators import DataRequired, Email
 
 
@@ -45,7 +46,7 @@ class EditProject(FlaskForm):
 
 
 class AddProjectSection(FlaskForm):
-    order = IntegerField('Section Order')
+    title = StringField('Section Title', render_kw={"placeholder": 'Add Section Title', 'class': 'short'})
     submit_section = SubmitField('Add Section', render_kw={'class': 'submit'})
 
 
@@ -57,40 +58,48 @@ class EditProjectSection(FlaskForm):
     image_2 = FileField('Section Image 2')
     image_3 = FileField('Section Image 3')
     submit_EditSection = SubmitField('Save Projection Section', render_kw={'class': 'submit'})
+    delete_section = SubmitField('Delete Section', render_kw={'class': 'delete'})
 
 
 class EditAbout(FlaskForm):
     headline_about = StringField('Headline About', render_kw={'class': 'text-field'})
     subline_about = StringField('Subline About', render_kw={'class': 'text-field'})
-    paragraph_about = TextAreaField('Paragraph About', render_kw={'class': 'text-field'})
-    main_image_about = FileField('Main Image About')
-    second_image_about = FileField('Second Image About')
+    paragraph_about = TextAreaField('Paragraph About', render_kw={'class': 'text-field', 'cols': 30, 'rows': 12})
     submit_about = SubmitField('Save Changes', render_kw={'class': 'submit'})
 
 
 class AddCvEntry(FlaskForm):
-    workplace = StringField('CV Workplace', render_kw={'class': 'text-field'})
+    start = DateField('Date', format='%Y-%m-%d', render_kw={"placeholder": 'yyyy-mm-dd', 'class': 'short'})
+    end = DateField('Date', format='%Y-%m-%d', render_kw={"placeholder": 'yyyy-mm-dd, leave empty for current',
+                                                          'class': 'short'})
+    workplace = StringField('CV Workplace', render_kw={"placeholder": 'New workplace', 'class': 'short'})
+    paragraph = TextAreaField('Paragraph', render_kw={"placeholder": 'Describe what is learned ',
+                                                      'class': 'text-field'})
     submit_cv = SubmitField('Add CV', render_kw={'class': 'add'})
 
 
 class EditCv(FlaskForm):
-    order = IntegerField('Section Order')
-    start = DateField('Date', format='%Y-%m-%d', render_kw={'class': 'text-field'})
-    end = DateField('Date', format='%Y-%m-%d', render_kw={'class': 'text-field'})
-    workplace = StringField('Section Title', render_kw={'class': 'text-field'})
-    paragraph = TextAreaField('Section paragraph', render_kw={'class': 'text-field'})
+    start = DateField('Date', format='%Y-%m-%d', render_kw={'class': 'short'})
+    end = DateField('Date', format='%Y-%m-%d', render_kw={'class': 'short'})
+    workplace = StringField('Workplace', render_kw={'class': 'text-field'})
+    paragraph = TextAreaField('Job Description', render_kw={'class': 'text-field'})
+    submit_edit_cv = SubmitField('Save CV Changes', render_kw={'class': 'submit'})
+    delete_cv = SubmitField('Delete Entry', render_kw={'class': 'delete'})
 
 
 class AddCourseEntry(FlaskForm):
-    course = StringField('CV Workplace', render_kw={'class': 'text-field'})
-    submit_course = SubmitField('Add CV', render_kw={'class': 'add'})
+    course_name = StringField('Course Name', render_kw={"placeholder": 'New Course Entry', 'class': 'short'})
+    paragraph = StringField('Course Description', render_kw={"placeholder": 'New Course Description',
+                                                             'class': 'text-field'})
+    submit_course = SubmitField('Add Course', render_kw={'class': 'add'})
 
 
 class EditCourse(FlaskForm):
-    order = IntegerField('Section Order')
-    course_name = StringField('Section Title', render_kw={'class': 'text-field'})
-    paragraph = TextAreaField('Section paragraph', render_kw={'class': 'text-field'})
-
+    order = IntegerField('Course Order')
+    course_name = StringField('Course Name', render_kw={'class': 'text-field'})
+    paragraph = TextAreaField('Course Description', render_kw={'class': 'text-field'})
+    submit_course = SubmitField('Save Changes', render_kw={'class': 'submit'})
+    delete_course = SubmitField('Delete Entry', render_kw={'class': 'delete'})
 
 class EditContact(FlaskForm):
     headline_contact = StringField('Headline Contact', render_kw={'class': 'text-field'})
@@ -102,5 +111,5 @@ class EditContact(FlaskForm):
 
 class EditExperiments(FlaskForm):
     headline_experiments = StringField('Headline Experiments', render_kw={'class': 'text-field'})
-    subline_experiments = StringField('Subline experiments', render_kw={'class': 'text-field'})
+    subline_experiments = StringField('Subline Experiments', render_kw={'class': 'text-field'})
     submit_experiments = SubmitField('Save Changes', render_kw={'class': 'submit'})

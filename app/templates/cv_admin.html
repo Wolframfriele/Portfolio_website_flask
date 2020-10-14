@@ -1,0 +1,23 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+    <section>
+        <form action="" method="post" novalidate>
+            {{ edit_cv.hidden_tag() }}
+                        <p>
+                {{ edit_cv.workplace.label }}<br>
+                {{ edit_cv.workplace }}
+            </p>
+            <p>
+                Start and End date <br>
+                {{ edit_cv.start }}{{ edit_cv.end }}</p>
+            <p>
+                {{ edit_cv.paragraph.label }}<br>
+                {{ edit_cv.paragraph }}
+            </p>
+            <p>
+                {{ edit_cv.submit_edit_cv }}
+                {{ edit_cv.delete_cv }}
+            </p>
+        </form>
+    </section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+    <section>
+        <form action="" method="post" novalidate>
+            {{ edit_contact.hidden_tag() }}
+            <p>
+                {{ edit_contact.headline_contact.label }}<br>
+                {{ edit_contact.headline_contact }}
+            </p>
+            <p>
+                {{ edit_contact.subline_contact.label }}<br>
+                {{ edit_contact.subline_contact }}
+            </p>
+            <p>
+                {{ edit_contact.hidden_subline_contact.label }}<br>
+                {{ edit_contact.hidden_subline_contact }}
+            </p>
+            <p>{{ edit_contact.submit_contact }}</p>
+        </form>
+    </section>
+{% endblock %}

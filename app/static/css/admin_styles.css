@@ -81,7 +81,11 @@ nav ul {
     width: 100%;
 }
 
-nav li {
+ul {
+    padding: 0;
+}
+
+li {
     list-style: none;
 }
 
@@ -142,15 +146,16 @@ nav a:hover {
 }
 
 .short {
-    width: 88%;
+    width: 300px;
     padding: 12px;
-    margin: 12px 0;
+    margin: 12px 10px 12px 0px;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1em;
     background-color: #2e2e2e;
     color: white;
     border: none;
+    display: inline;
 }
 
 textarea {
@@ -207,6 +212,19 @@ textarea {
 
 #modal {
   display: none;
+}
+
+#sortCourses {
+    padding: 0;
+    margin: 0;
+}
+
+.project-section li,
+#sortCourses li {
+    list-style: none;
+    border: solid white;
+    padding: 12px;
+    margin: 1em 0;
 }
 
 .flashed-message {
@@ -271,10 +289,20 @@ textarea {
         padding: 0;
     }
 
+    section ul {
+
+    }
+
     .items li {
         list-style: none;
         outline: solid;
         padding: 12px;
         margin-bottom: 2em;
+    }
+
+    section ul,
+    .flashed-message,
+    #sortCourses {
+        grid-column: 2 / 8;
     }
 }

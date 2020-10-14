@@ -3,15 +3,6 @@
     <section>
         <form action="" enctype=multipart/form-data method="post" novalidate>
             {{ edit_work.hidden_tag() }}
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                    <ul class="flashed-message">
-                        {% for message in messages %}
-                            <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-            {% endif %}
-            {% endwith %}
             <p class="cover-image">
                 <img src="{{ url_for('static', filename='/img/' + static.cover_image_work) }}" alt="" width="200px"><br>
                 {{ edit_work.cover_image.label }}<br>
@@ -26,6 +17,7 @@
                 {{ edit_work.subline }}
             </p>
             <p>{{ edit_work.submit_static }}</p>
+            <hr>
         </form>
     </section>
     <section>

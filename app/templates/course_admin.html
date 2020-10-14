@@ -1,0 +1,23 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+    <section>
+        <form action="" method="post" novalidate>
+            {{ edit_course.hidden_tag() }}
+                        <p>
+                {{ edit_course.course_name.label }}<br>
+                {{ edit_course.course_name }}
+            </p>
+                {{ edit_course.paragraph.label }}<br>
+                {{ edit_course.paragraph }}
+            </p>
+            <p>
+                {{ edit_course.order.label }}<br>
+                {{ edit_course.order }}
+            </p>
+            <p>
+                {{ edit_course.submit_course }}
+                {{ edit_course.delete_course }}
+            </p>
+        </form>
+    </section>
+{% endblock %}

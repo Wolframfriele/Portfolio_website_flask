@@ -1,0 +1,37 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+    <section>
+        <form action="" enctype=multipart/form-data method="post" novalidate>
+            {{ edit_section.hidden_tag() }}
+            <p>
+                {{ edit_section.order.label }}
+                {{ edit_section.order }}
+            </p>
+            <p>
+                {{ edit_section.title.label }}<br>
+                {{ edit_section.title }}
+            </p>
+                {{ edit_section.paragraph.label }}<br>
+                {{ edit_section.paragraph }}
+            </p>
+            <p>
+                {% if section.image_1 %}
+                    <img src="{{ url_for('static', filename='img/' + section.image_1) }}" alt="">
+                {% endif %}
+                {{ edit_section.image_1.label }}<br>
+                {{ edit_section.image_1 }}
+            </p>
+            <p>
+                {% if section.image_2 %}
+                    <img src="{{ url_for('static', filename='img/' + section.image_2) }}" alt="">
+                {% endif %}
+                {{ edit_section.image_2.label }}<br>
+                {{ edit_section.image_2 }}
+            </p>
+            <p>
+                {{ edit_section.submit_EditSection }}
+                {{ edit_section.delete_section }}
+            </p>
+        </form>
+    </section>
+{% endblock %}

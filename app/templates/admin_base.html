@@ -40,6 +40,17 @@
             </ul>
         </nav>
     </header>
+        {% with messages = get_flashed_messages() %}
+        <section>
+            <ul class="flashed-message">
+            {% if messages %}
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            {% endif %}
+            </ul>
+        </section>
+        {% endwith %}
         {% block content %}{% endblock %}
 </body>
 </html>

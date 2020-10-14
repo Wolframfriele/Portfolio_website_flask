@@ -56,7 +56,6 @@ class ProjectSection(db.Model):
 # Setting up table for CV entries
 class CvEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    order = db.Column(db.Integer)
     start = db.Column(db.Date)
     end = db.Column(db.Date)
     workplace = db.Column(db.String(255))
