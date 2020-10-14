@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 <img src="static/img/data-landscape-small.webp" srcset="static/img/data-landscape.jpg"  alt="" class="cover-image">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashed-message">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
     <section class="left-half">
         <h2>{{ static.headline_work }}</h2>
         <p>{{ static.subline_work }}</p>

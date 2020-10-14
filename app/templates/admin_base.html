@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+    <title>{{ title }} | Wolfram Friele</title>
+    {% else %}
+    <title>Wolfram Friele</title>
+    {% endif %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_styles.css') }}">
+    <link rel=”icon” type="image/x-icon" href=“{{ url_for('static', filename='img/favicon.ico') }}”>
+</head>
+<body>
+    <script>0</script>
+    <header>
+        <div id="header-left">
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='/img/header-logo.png') }}" alt="" id="logo">
+                <h3>Wolfram Friele / Admin</h3>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                {% if title == 'Admin | Work' %}
+                    <li><a href="{{ url_for('website_content') }}" class="current-page">Work</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('website_content') }}">Work</a></li>
+                {% endif %}
+                {% if title == 'Admin | About' %}
+                    <li><a href="{{ url_for('website_content_about') }}" class="current-page">About</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('website_content_about') }}">About</a></li>
+                {% endif %}
+                {% if title == 'Admin | Contact' %}
+                    <li><a href="{{ url_for('website_content_contact') }}" class="current-page">Contact</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('website_content_contact') }}">Contact</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+        {% block content %}{% endblock %}
+</body>
+</html>

@@ -1,58 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% if title %}
-    <title>{{ title }} | Wolfram Friele</title>
-    {% else %}
-    <title>Wolfram Friele</title>
-    {% endif %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel=”shortcut icon” href=“{{ url_for('static', filename='img/favicon.ico') }}”>
-</head>
-<body>
-    <header>
-        <div id="header-left">
-            <a href="{{ url_for('index') }}">
-                <img src="{{ url_for('static', filename='/img/header-logo.png') }}" alt="" id="logo">
-                <h3>Wolfram Friele</h3>
-            </a>
-        </div>
-        <nav>
-            <ul>
-                {% if title == 'Work' %}
-                    <li><a href="{{ url_for('index') }}" class="current-page">Work</a></li>
-                {% else %}
-                    <li><a href="{{ url_for('index') }}">Work</a></li>
-                {% endif %}
-                {% if title == 'About' %}
-                    <li><a href="{{ url_for('about') }}" class="current-page">About</a></li>
-                {% else %}
-                    <li><a href="{{ url_for('about') }}">About</a></li>
-                {% endif %}
-                {% if title == 'Contact' %}
-                    <li><a href="{{ url_for('contact') }}" class="current-page">Contact</a></li>
-                {% else %}
-                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </header>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <section>
-                <ul class="paragraph-left">
-                    {% for message in messages %}
-                    <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            </section>
-        {% endif %}
-        {% endwith %}
-    <section class="left-half">
-        <h2>Admin</h2>
-        <p>Change information on the website.</p>
+{% extends 'admin_base.html' %}
+{% block content %}
+    <section>
+        <form action="" enctype=multipart/form-data method="post" novalidate>
+            {{ edit_work.hidden_tag() }}
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                    <ul class="flashed-message">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+            {% endif %}
+            {% endwith %}
+            <p class="cover-image">
+                <img src="{{ url_for('static', filename='/img/' + static.cover_image_work) }}" alt="" width="200px"><br>
+                {{ edit_work.cover_image.label }}<br>
+                {{ edit_work.cover_image }}
+            </p>
+            <p>
+                {{ edit_work.headline.label }}<br>
+                {{ edit_work.headline }}
+            </p>
+            <p>
+                {{ edit_work.subline.label }}<br>
+                {{ edit_work.subline }}
+            </p>
+            <p>{{ edit_work.submit_static }}</p>
+        </form>
     </section>
-</body>
-</html>
+    <section>
+         <h2>Edit Projects</h2>
+        <form action="" method="post" novalidate>
+            {{ add_project.hidden_tag() }}
+            <p>
+                {{ add_project.submit_project }}
+                {{ add_project.name }}
+            </p>
+        </form>
+        <ul class="items">
+        {% for project in projects %}
+            <li><a href="{{ url_for('website_content_project', url_name=project.url_name) }}">{{ project.name }}</a></li>
+        {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

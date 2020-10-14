@@ -1,0 +1,72 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+    <section>
+        <form action="" enctype=multipart/form-data method="post" novalidate>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                    <ul class="flashed-message">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+            {% endif %}
+            {% endwith %}
+            {{ edit_project.hidden_tag() }}
+            <p>
+                {{ edit_project.video.label }}<br>
+                {{ edit_project.video }}
+            </p>
+            <p>
+                {{ edit_project.name.label }}<br>
+                {{ edit_project.name }}
+            </p>
+            <p>
+                {{ edit_project.short_description.label }}<br>
+                {{ edit_project.short_description }}
+            </p>
+            <p>
+                {% if project.main_image != None %}
+                    <img src="{{ url_for('static', filename='img/' + project.main_image) }}" alt="" class="actual-size">
+                {% endif %}
+                <br>
+                {{ edit_project.main_image.label }}<br>
+                {{ edit_project.main_image }}
+            </p>
+            <p>
+                {% if project.main_image != None %}
+                    <img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="">
+                {% endif %}
+                <br>
+                {{ edit_project.secondary_image.label }}<br>
+                {{ edit_project.secondary_image }}
+            </p>
+            <p>
+                {{ edit_project.long_description.label }}<br>
+                {{ edit_project.long_description }}
+            </p>
+            <p>
+                {{ edit_project.date.label }}<br>
+                {{ edit_project.date }}
+            </p>
+            <p>
+                {{ edit_project.url_name.label }}<br>
+                {{ edit_project.url_name }}
+            </p>
+            <p>{{ edit_project.submit_editproject }}</p>
+        </form>
+    </section>
+    <section>
+        <div class="items">
+            <button onclick="toggle_display()" class="delete">Delete Project</button>
+            <div id="modal">
+                <h2>Delete Project</h2>
+                <p>Are you sure you want to delete this project?</p>
+                <button onclick="toggle_display()" class="cancel">Cancel</button>
+                <form action="" method="post" novalidate>
+                    {{ edit_project.hidden_tag() }}
+                    {{ edit_project.delete_project }}
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
