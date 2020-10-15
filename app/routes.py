@@ -98,7 +98,7 @@ def logout():
 
 
 @app.route('/website-content', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def website_content():
     static = StaticElements.query.first()
     projects = Project.query.all()[::-1]

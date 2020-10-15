@@ -148,6 +148,7 @@ nav a:hover {
 
 .short {
     width: 32%;
+    min-width: 150px;
     padding: 12px;
     margin: 12px 10px 12px 0px;
     box-sizing: border-box;
@@ -181,6 +182,7 @@ textarea {
     background-color: #a1a1a1;
     font-size: 1em;
     width: 25%;
+    min-width: 150px;
     border: 2px solid #a1a1a1;
 }
 
@@ -196,6 +198,7 @@ textarea {
     padding: 12px;
     margin: 8px 0;
     width: 25%;
+    min-width: 150px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1em;
     border: 2px solid #9c2f1a;
