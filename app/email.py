@@ -12,7 +12,7 @@ def send_email(subject, sender, recipients, text_body, html_body):
 
 def send_confirmation_email(message):
     send_email('[CONFIRMATION] I got your message!',
-               sender=app.config['ADMINS'][1],
+               sender=app.config['ADMINS'][0],
                recipients=[message.email],
                text_body=render_template('email/confirmation_email.txt',
                                          message=message),
@@ -22,7 +22,7 @@ def send_confirmation_email(message):
 
 def send_message_email(message):
     send_email('New message from: ' + message.name,
-               sender=app.config['ADMINS'][1],
+               sender=app.config['ADMINS'][0],
                recipients=[app.config['ADMINS'][0]],
                text_body=render_template('email/send_message_email.txt',
                                          message=message),
