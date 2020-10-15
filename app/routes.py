@@ -2,7 +2,7 @@ from flask import render_template, flash, url_for, redirect, request,send_from_d
 from flask_login import current_user, login_user, login_required, logout_user, login_manager
 from app import app, db
 from app.forms import LoginForm, ContactForm, EditWork, AddProject, EditProject, EditProjectSection, AddProjectSection,\
-    EditAbout, AddCvEntry, EditCv, AddCourseEntry, EditCourse, EditContact
+    EditAbout, AddCvEntry, EditCv, AddCourseEntry, EditCourse, EditContact, AddSocial, EditSocial
 from app.models import StaticElements, Project, ProjectSection, CvEntry, CourseEntry, SocialMediaLink, User, Message
 from app.email import send_confirmation_email, send_message_email
 from werkzeug.utils import secure_filename
@@ -223,19 +223,51 @@ def website_content_course(id):
     return render_template('course_admin.html', title='Admin | About', course=course, edit_course=edit_course)
 
 
-@app.route('/website-content/contact')
+@app.route('/website-content/contact', methods=['GET', 'POST'])
 @login_required
 def website_content_contact():
     static = StaticElements.query.first()
     socials = SocialMediaLink.query.order_by(SocialMediaLink.order).all()
+    messages = Message.query.order_by(Message.date).all()
     edit_contact = EditContact()
+    add_social = AddSocial()
 
     if request.method == 'GET':
         edit_contact.headline_contact.data = static.headline_contact
         edit_contact.subline_contact.data = static.subline_contact
         edit_contact.hidden_subline_contact.data = static.hidden_subline_contact
+
+    elif add_social.submit_social.data and add_social.validate_on_submit():
+        new_social = SocialMediaLink()
+        add_social.populate_obj(new_social)
+        db.session.add(new_social)
+        db.session.commit()
+        flash('Social link added.')
+        return redirect(url_for('website_content_contact'))
+
     return render_template('contact_admin.html', title='Admin | Contact', static=static, socials=socials,
-                           edit_contact=edit_contact)
+                           edit_contact=edit_contact, add_social=add_social, messages=messages)
+
+
+@app.route('/website-content/contact/<id>', methods=['GET', 'POST'])
+@login_required
+def website_content_social(id):
+    social = SocialMediaLink.query.filter_by(id=id).first_or_404()
+    edit_social = EditSocial(obj=social)
+
+    if edit_social.submit_social.data and edit_social.validate_on_submit():
+        edit_social.populate_obj(social)
+        db.session.commit()
+        flash('Social Link saved.')
+        return redirect(url_for('website_content_contact'))
+
+    elif edit_social.delete_social.data and edit_social.validate_on_submit():
+        db.session.delete(social)
+        db.session.commit()
+        flash('Social link deleted.')
+        return redirect(url_for('website_content_contact'))
+    
+    return render_template('social_admin.html', title='Admin | Contact', social=social, edit_social=edit_social)
 
 
 @app.route('/website-content/project/<url_name>', methods=['GET', 'POST'])
@@ -244,7 +276,6 @@ def website_content_project(url_name):
     project = Project.query.filter_by(url_name=url_name).first_or_404()
     edit_project = EditProject()
     project_sections = ProjectSection.query.order_by(ProjectSection.order).filter_by(project_id=project.id)
-    print(project_sections)
     edit_project_section = EditProjectSection()
     add_section = AddProjectSection()
 
@@ -261,7 +292,10 @@ def website_content_project(url_name):
         project.short_description = edit_project.short_description.data
         project.date = edit_project.date.data
         project.long_description = edit_project.long_description.data
-        project.video = edit_project.video.data
+        if edit_project.video.data == '':
+            project.video = None
+        else:
+            project.video = edit_project.video.data
         project.url_name = edit_project.url_name.data
 
         file = request.files['main_image']

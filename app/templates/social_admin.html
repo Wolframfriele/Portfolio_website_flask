@@ -1,0 +1,13 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+    <section>
+        <form action="" method="post" novalidate>
+            {{ edit_social.hidden_tag() }}
+            <p>
+                Link name, link and display order<br>
+                {{ edit_social.display }} {{ edit_social.link }}{{ edit_social.order }}
+            </p>
+            <p>{{ edit_social.submit_social }} {{ edit_social.delete_social }}</p>
+        </form>
+    </section>
+{% endblock %}

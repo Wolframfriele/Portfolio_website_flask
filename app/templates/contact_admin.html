@@ -16,6 +16,38 @@
                 {{ edit_contact.hidden_subline_contact }}
             </p>
             <p>{{ edit_contact.submit_contact }}</p>
+            <hr>
         </form>
+    </section>
+    <section>
+        <form action="" method="post" novalidate>
+            {{ add_social.hidden_tag() }}
+            <p>
+                Link name, link and display order<br>
+                {{ add_social.display }} {{ add_social.link }}{{ add_social.order }}
+            </p>
+            <p>{{ add_social.submit_social }}</p>
+        </form>
+    </section>
+    <section>
+        <ul>
+            {% for social in socials %}
+                <li>{{ social.order }}) {{ social.display }}: {{ social.link }}
+                    <a href="{{ url_for('website_content_social', id=social.id) }}">Edit</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+        <ul>
+            {% for message in messages %}
+                <li>
+                    <hr>
+                    <p>At {{ message.date.strftime('%Y-%m-%d') }} from {{ message.name }}</p>
+                    <p>{{ message.message }}</p>
+                    Reply at <a href="mailto:{{ message.email }}" target="_blank">{{ message.email }}</a>
+                </li>
+            {% endfor %}
+        </ul>
     </section>
 {% endblock %}

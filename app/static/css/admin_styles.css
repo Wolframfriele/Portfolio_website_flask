@@ -87,6 +87,7 @@ ul {
 
 li {
     list-style: none;
+    padding: 5px 0;
 }
 
 nav a {
@@ -146,7 +147,7 @@ nav a:hover {
 }
 
 .short {
-    width: 300px;
+    width: 32%;
     padding: 12px;
     margin: 12px 10px 12px 0px;
     box-sizing: border-box;

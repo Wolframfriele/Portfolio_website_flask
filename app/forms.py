@@ -51,7 +51,7 @@ class AddProjectSection(FlaskForm):
 
 
 class EditProjectSection(FlaskForm):
-    order = IntegerField('Section Order')
+    order = IntegerField('Section Order', render_kw={"placeholder": 'Display Order', 'class': 'short'})
     paragraph = TextAreaField('Section paragraph', render_kw={'class': 'text-field'})
     title = StringField('Section Title', render_kw={'class': 'text-field'})
     image_1 = FileField('Section Image 1')
@@ -95,11 +95,12 @@ class AddCourseEntry(FlaskForm):
 
 
 class EditCourse(FlaskForm):
-    order = IntegerField('Course Order')
+    order = IntegerField('Course Order', render_kw={"placeholder": 'Display Order', 'class': 'short'})
     course_name = StringField('Course Name', render_kw={'class': 'text-field'})
     paragraph = TextAreaField('Course Description', render_kw={'class': 'text-field'})
     submit_course = SubmitField('Save Changes', render_kw={'class': 'submit'})
     delete_course = SubmitField('Delete Entry', render_kw={'class': 'delete'})
+
 
 class EditContact(FlaskForm):
     headline_contact = StringField('Headline Contact', render_kw={'class': 'text-field'})
@@ -107,6 +108,21 @@ class EditContact(FlaskForm):
     hidden_subline_contact = StringField('Hidden Subline Contact', render_kw={'class': 'text-field'})
     image_contact = FileField('Contact Image')
     submit_contact = SubmitField('Save Changes', render_kw={'class': 'submit'})
+
+
+class AddSocial(FlaskForm):
+    link = StringField('Link', render_kw={"placeholder": 'Social Link', 'class': 'short'})
+    display = StringField('Display', render_kw={"placeholder": 'Display Name', 'class': 'short'})
+    order = IntegerField('Social Order', render_kw={"placeholder": 'Display Order', 'class': 'short'})
+    submit_social = SubmitField('Add Social Link', render_kw={'class': 'submit'})
+
+
+class EditSocial(FlaskForm):
+    link = StringField('Link', render_kw={"placeholder": 'Social Link', 'class': 'short'})
+    display = StringField('Display', render_kw={"placeholder": 'Display Name', 'class': 'short'})
+    order = IntegerField('Social Order', render_kw={"placeholder": 'Display Order', 'class': 'short'})
+    submit_social = SubmitField('Save Social Link', render_kw={'class': 'submit'})
+    delete_social = SubmitField('Delete Entry', render_kw={'class': 'delete'})
 
 
 class EditExperiments(FlaskForm):
