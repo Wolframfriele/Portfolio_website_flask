@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<img src="static/img/data-landscape-small.webp" srcset="static/img/data-landscape.jpg"  alt="" class="cover-image">
+<img src="{{ url_for('static', filename='img/' + static.cover_image_work) }}"  alt="" class="cover-image">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul class="flashed-message">

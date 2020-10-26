@@ -25,3 +25,10 @@ class Config(object):
         return '.' in filename and \
                filename.rsplit('.', 1)[1].lower() in Config.ALLOWED_EXTENSIONS
 
+    def no_duplicate(filename):
+        path = basedir + "/app/static/img"
+
+        for name in os.listdir(path):
+            if name == filename:
+                return False
+        return True

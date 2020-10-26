@@ -19,7 +19,7 @@
         {% if loop.index is divisibleby 2 %}
         <section>
             {% if section.image_1 != None %}
-                <img src="{{ url_for('static', filename='img/' + section.image_1) }}" alt="" class="project-secondary-img-left">
+                <img src="{{ url_for('static', filename='img/' + section.image_1) }}" alt="" class="img-left">
             {% endif %}
             {% if section.image_2 != None %}
                 <img src="{{ url_for('static', filename='img/' + section.image_2) }}" alt="" class="img-center">

@@ -115,14 +115,16 @@ def website_content():
         
         file = request.files['cover_image']
         if file and Config.allowed_file(file.filename):
-            delete_old = False
-            if static.cover_image_work:
-                delete_old = True
-                old_file = os.path.join(Config.UPLOAD_IMAGE, static.cover_image_work)
-            file.save(os.path.join(Config.UPLOAD_IMAGE, secure_filename(file.filename)))
-            static.cover_image_work = secure_filename(file.filename)
-            if delete_old == True:
-                os.remove(old_file)
+            if Config.no_duplicate(file.filename):
+                if static.cover_image_work:
+                    old_file = os.path.join(Config.UPLOAD_IMAGE, static.cover_image_work)
+                    os.remove(old_file)
+                file.save(os.path.join(Config.UPLOAD_IMAGE, secure_filename(file.filename)))
+                static.cover_image_work = secure_filename(file.filename)
+            else:
+                db.session.commit()
+                flash('Duplicate image name, please change the name.')
+                return redirect(url_for('website_content'))
 
         db.session.commit()
         flash('Changes are saved!')
@@ -300,25 +302,38 @@ def website_content_project(url_name):
 
         file = request.files['main_image']
         if file and Config.allowed_file(file.filename):
-            delete_old = False
-            if project.main_image:
-                delete_old = True
-                old_file = os.path.join(Config.UPLOAD_IMAGE, project.main_image)
-            file.save(os.path.join(Config.UPLOAD_IMAGE, secure_filename(file.filename)))
-            project.main_image = secure_filename(file.filename)
-            if delete_old == True:
-                os.remove(old_file)
+            if Config.no_duplicate(file.filename):
+                if project.main_image:
+                    old_file = os.path.join(Config.UPLOAD_IMAGE, project.main_image)
+                    os.remove(old_file)
+                file.save(os.path.join(Config.UPLOAD_IMAGE, secure_filename(file.filename)))
+                project.main_image = secure_filename(file.filename)
+            else:
+                db.session.commit()
+                flash('Duplicate image name, please change the name.')
+                return redirect(url_for('website_content_project', url_name=project.url_name))
+
+        else:
+            db.session.commit()
+            flash('Image type not allowed')
+            return redirect(url_for('website_content_project', url_name=project.url_name))
 
         file = request.files['secondary_image']
         if file and Config.allowed_file(file.filename):
-            delete_old = False
-            if project.secondary_image:
-                delete_old = True
-                old_file = os.path.join(Config.UPLOAD_IMAGE, project.secondary_image)
-            file.save(os.path.join(Config.UPLOAD_IMAGE, secure_filename(file.filename)))
-            project.secondary_image = secure_filename(file.filename)
-            if delete_old == True:
-                os.remove(old_file)
+            if Config.no_duplicate(file.filename):
+                if project.secondary_image:
+                    old_file = os.path.join(Config.UPLOAD_IMAGE, project.secondary_image)
+                    os.remove(old_file)
+                file.save(os.path.join(Config.UPLOAD_IMAGE, secure_filename(file.filename)))
+                project.secondary_image = secure_filename(file.filename)
+            else:
+                db.session.commit()
+                flash('Duplicate image name, please change the name.')
+                return redirect(url_for('website_content_project', url_name=project.url_name))
+        else:
+            db.session.commit()
+            flash('Image type not allowed')
+            return redirect(url_for('website_content_project', url_name=project.url_name))
 
         db.session.commit()
         flash('Changes are saved!')
@@ -363,25 +378,41 @@ def website_content_section(id, url_name):
 
         file = request.files['image_1']
         if file and Config.allowed_file(file.filename):
-            delete_old = False
-            if section.image_1:
-                delete_old = True
-                old_file = os.path.join(Config.UPLOAD_IMAGE, section.image_1)
-            file.save(os.path.join(Config.UPLOAD_IMAGE, secure_filename(file.filename)))
-            section.image_1 = secure_filename(file.filename)
-            if delete_old == True:
-                os.remove(old_file)
+            if Config.no_duplicate(file.filename):
+                if section.image_1:
+                    old_file = os.path.join(Config.UPLOAD_IMAGE, section.image_1)
+                    os.remove(old_file)
+                file.save(os.path.join(Config.UPLOAD_IMAGE, secure_filename(file.filename)))
+                section.image_1 = secure_filename(file.filename)
+            else:
+                db.session.commit()
+                flash('Duplicate image name, please change the name.')
+                return render_template('section_admin.html', title='Admin | About',
+                                       section=section, edit_section=edit_section)
+        else:
+            db.session.commit()
+            flash('Image type not allowed')
+            return render_template('section_admin.html', title='Admin | About',
+                                   section=section, edit_section=edit_section)
 
         file = request.files['image_2']
         if file and Config.allowed_file(file.filename):
-            delete_old = False
-            if section.image_2:
-                delete_old = True
-                old_file = os.path.join(Config.UPLOAD_IMAGE, section.image_2)
-            file.save(os.path.join(Config.UPLOAD_IMAGE, secure_filename(file.filename)))
-            section.image_2 = secure_filename(file.filename)
-            if delete_old == True:
-                os.remove(old_file)
+            if Config.no_duplicate(file.filename):
+                if section.image_2:
+                    old_file = os.path.join(Config.UPLOAD_IMAGE, section.image_2)
+                    os.remove(old_file)
+                file.save(os.path.join(Config.UPLOAD_IMAGE, secure_filename(file.filename)))
+                section.image_2 = secure_filename(file.filename)
+            else:
+                db.session.commit()
+                flash('Duplicate image name, please change the name.')
+                return render_template('section_admin.html', title='Admin | About',
+                                       section=section, edit_section=edit_section)
+        else:
+            db.session.commit()
+            flash('Image type not allowed')
+            return render_template('section_admin.html', title='Admin | About',
+                                   section=section, edit_section=edit_section)
 
         db.session.commit()
         flash('Section updated.')
