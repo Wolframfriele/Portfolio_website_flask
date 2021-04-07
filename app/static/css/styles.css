@@ -224,7 +224,10 @@ footer li {
 
 @media(min-width: 700px) {
     /* Header */
-    
+    body {
+        margin: 10px 0;
+    }
+
     header,
     section,
     footer {

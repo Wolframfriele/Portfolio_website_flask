@@ -18,8 +18,12 @@
     {% for project in projects %}
         {% if loop.index is divisibleby 2 %}
             <section class="project">
-            <img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="" class="project-secondary-img-right">
-            <img src="{{ url_for('static', filename='img/' + project.main_image) }}" alt="" class="project-main-img">
+            {% if project.secondary_image %}
+                <img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="" class="project-secondary-img-right">
+            {% endif %}
+            {% if project.main_image %}
+                <img src="{{ url_for('static', filename='img/' + project.main_image) }}" alt="" class="project-main-img">
+            {% endif %}
             <h1 class="title-left">{{ project.name }}</h1>
             <p class="paragraph-left">{{ project.short_description }}
                 <br>
@@ -28,8 +32,12 @@
             </section>
         {% else %}
             <section class="project">
-            <img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="" class="project-secondary-img-left">
-            <img src="{{ url_for('static', filename='img/' + project.main_image) }}" alt="" class="project-main-img">
+            {% if project.secondary_image %}
+                <img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="" class="project-secondary-img-left">
+            {% endif %}
+            {% if project.main_image %}
+                <img src="{{ url_for('static', filename='img/' + project.main_image) }}" alt="" class="project-main-img">
+            {% endif %}
             <h1 class="title-right">{{ project.name }}</h1>
             <p class="paragraph-right">{{ project.short_description }}
                 <br>

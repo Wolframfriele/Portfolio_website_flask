@@ -71,7 +71,7 @@ class EditAbout(FlaskForm):
 class AddCvEntry(FlaskForm):
     start = DateField('Date', format='%Y-%m-%d', render_kw={"placeholder": 'yyyy-mm-dd', 'class': 'short'})
     end = DateField('Date', format='%Y-%m-%d', render_kw={"placeholder": 'yyyy-mm-dd, leave empty for current',
-                                                          'class': 'short'})
+                                                          'class': 'short'}, filters=[lambda x: x or None])
     workplace = StringField('CV Workplace', render_kw={"placeholder": 'New workplace', 'class': 'short'})
     paragraph = TextAreaField('Paragraph', render_kw={"placeholder": 'Describe what is learned ',
                                                       'class': 'text-field'})
@@ -80,7 +80,8 @@ class AddCvEntry(FlaskForm):
 
 class EditCv(FlaskForm):
     start = DateField('Date', format='%Y-%m-%d', render_kw={'class': 'short'})
-    end = DateField('Date', format='%Y-%m-%d', render_kw={'class': 'short'})
+    end = DateField('Date', format='%Y-%m-%d', render_kw={"placeholder": 'yyyy-mm-dd, leave empty for current',
+                                                          'class': 'short'}, filters=[lambda x: x or None])
     workplace = StringField('Workplace', render_kw={'class': 'text-field'})
     paragraph = TextAreaField('Job Description', render_kw={'class': 'text-field'})
     submit_edit_cv = SubmitField('Save CV Changes', render_kw={'class': 'submit'})
