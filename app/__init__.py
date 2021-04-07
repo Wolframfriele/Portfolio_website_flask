@@ -1,5 +1,6 @@
 from flask import Flask
 from config import Config
+from flask_seasurf import SeaSurf
 from flask_talisman import Talisman
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -7,6 +8,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 
 app = Flask(__name__)
+csrf = SeaSurf(app)
 
 SELF = "'self'"
 talisman = Talisman(
@@ -14,6 +16,7 @@ talisman = Talisman(
     content_security_policy={
         'default-src': [
             SELF,
+            'https://fonts.googleapis.com/',
             'https://fonts.gstatic.com/s/syne/',
             'https://player.vimeo.com/',
         ],
@@ -23,8 +26,13 @@ talisman = Talisman(
         ],
         'style-src': [
             SELF,
-            'https://fonts.googleapis.com/css2?family=Syne&display=swap',
+            'https://fonts.googleapis.com/',
+            'https://fonts.gstatic.com/s/syne/',
         ],
+        'base-uri': SELF,
+        'object-src': "'none'",
+        'frame-ancestors': "'none'",
+        'form-action': SELF,
     },
     content_security_policy_nonce_in=['script-src'],
     feature_policy={
