@@ -1,18 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
     <section class="left-half">
-        <h2>{{ static.headline_about }}</h2>
-        <p>{{ static.subline_about }}</p>
+        <h2>Curious. About a lot of things.</h2>
+        <p>
+            Ask me about animation, AI, bouldering, running, drones, bike-infrastructure...I’m a man of many interests.
+        </p>
     </section>
     <section>
         <img src="static/img/portrait-wolf-small.webp" srcset="static/img/portrait-wolf.jpg" alt="" class="img-left">
-        <h1 class="title-right">HELLO, I'M WOLF</h1>
-        <div class="paragraph-right">{{ static.paragraph_about | safe }}</div>
+        <h1 class="title-right">Hello, I'm Wolf</h1>
+        <div class="paragraph-right">
+            <p>
+                I spent the last 8 years working as a 3D motion designer in Amsterdam.
+                I’ve gotten tired of making advertisements for a living, so I’m making the switch to the world of AI.
+            </p>
+            <p>
+                Today, I’m attending the Hogeschool Utrecht to learn more about software and artificial intelligence.
+                In the future, I want to work for a purpose-driven organization that sees the
+                power of AI to make the world a little better.
+            </p>
+            <p>
+                When not at school or work, you’ll find me puzzling through a bouldering
+                problem or running through the woods.
+            </p>
+        </div>
     </section>
     <section>
         <img src="static/img/man-in-front-of-mountains-small.webp" srcset="static/img/man-in-front-of-mountains.jpg"
              alt="" class="img-right">
-        <h1 class="title-left">CURRICULUM VITAE</h1>
+        <h1 class="title-left">Curriculum Vitae</h1>
         <div id="paragraph-left-cv">
             <h4>Experience_</h4>
             {% for cv in cvs %}
@@ -38,6 +54,6 @@
         </div>
     </section>
     <section>
-        <a href="{{ url_for('contact') }}" class="contact-button">SAY HELLO</a>
+        <a href="{{ url_for('contact') }}" class="contact-button">Say hello</a>
     </section>
 {% endblock %}

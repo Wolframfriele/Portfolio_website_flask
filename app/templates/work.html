@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<img src="{{ url_for('static', filename='img/' + static.cover_image_work) }}"  alt="" class="cover-image">
+{% if static.cover_image_work %}
+    <img src="{{ url_for('static', filename='img/dynamic/' + static.cover_image_work) }}"  alt="" class="cover-image">
+{% else %}
+    <img src="{{ url_for('static', filename='img/data-landscape.jpg') }}"  alt="" class="cover-image">
+{% endif %}
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul class="flashed-message">
@@ -11,18 +15,18 @@
         {% endif %}
     {% endwith %}
     <section class="left-half">
-        <h2>{{ static.headline_work }}</h2>
-        <p>{{ static.subline_work }}</p>
+        <h2>AI engineer-in-training. Recovering advertising professional.</h2>
+        <p>On the hunt for purpose-driven projects that tackle climate change, global inequality, and fake news.</p>
         <h4 class="selection-work">Selection of Work_</h4>
     </section>
     {% for project in projects %}
         {% if loop.index is divisibleby 2 %}
             <section class="project">
             {% if project.secondary_image %}
-                <img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="" class="project-secondary-img-right">
+                <img src="{{ url_for('static', filename='img/dynamic/' + project.secondary_image) }}" alt="" class="project-secondary-img-right">
             {% endif %}
             {% if project.main_image %}
-                <img src="{{ url_for('static', filename='img/' + project.main_image) }}" alt="" class="project-main-img">
+                <img src="{{ url_for('static', filename='img/dynamic/' + project.main_image) }}" alt="" class="project-main-img">
             {% endif %}
             <h1 class="title-left">{{ project.name }}</h1>
             <p class="paragraph-left">{{ project.short_description }}
@@ -33,10 +37,10 @@
         {% else %}
             <section class="project">
             {% if project.secondary_image %}
-                <img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="" class="project-secondary-img-left">
+                <img src="{{ url_for('static', filename='img/dynamic/' + project.secondary_image) }}" alt="" class="project-secondary-img-left">
             {% endif %}
             {% if project.main_image %}
-                <img src="{{ url_for('static', filename='img/' + project.main_image) }}" alt="" class="project-main-img">
+                <img src="{{ url_for('static', filename='img/dynamic/' + project.main_image) }}" alt="" class="project-main-img">
             {% endif %}
             <h1 class="title-right">{{ project.name }}</h1>
             <p class="paragraph-right">{{ project.short_description }}
@@ -47,6 +51,6 @@
         {% endif %}
     {% endfor %}
     <section>
-        <a href="{{ url_for('contact') }}" class="contact-button">SAY HELLO</a>
+        <a href="{{ url_for('contact') }}" class="contact-button">Say hello</a>
     </section>
 {% endblock %}

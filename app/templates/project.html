@@ -8,7 +8,7 @@
     </section>
     {% endif %}
     <section>
-        <img src="{{ url_for('static', filename='img/' + project.secondary_image) }}" alt="" class="img-left">
+        <img src="{{ url_for('static', filename='img/dynamic/' + project.secondary_image) }}" alt="" class="img-left">
         <h1 class="title-right">{{ project.name }}</h1>
         <div class="paragraph-right">
             <h4>{{ project.date.strftime('%b %Y') }}_</h4>
@@ -19,10 +19,10 @@
         {% if loop.index is divisibleby 2 %}
         <section>
             {% if section.image_1 != None %}
-                <img src="{{ url_for('static', filename='img/' + section.image_1) }}" alt="" class="img-left">
+                <img src="{{ url_for('static', filename='img/dynamic/' + section.image_1) }}" alt="" class="img-left">
             {% endif %}
             {% if section.image_2 != None %}
-                <img src="{{ url_for('static', filename='img/' + section.image_2) }}" alt="" class="img-center">
+                <img src="{{ url_for('static', filename='img/dynamic/' + section.image_2) }}" alt="" class="img-center">
             {% endif %}
             {% if section.title != None %}
                 <h1 class="title-right">{{ section.title }}</h1>
@@ -38,13 +38,13 @@
         {% else %}
         <section>
             {% if section.image_1 != None %}
-                <img src="{{ url_for('static', filename='img/' + section.image_1) }}" alt="" class="img-right">
+                <img src="{{ url_for('static', filename='img/dynamic/' + section.image_1) }}" alt="" class="img-right">
             {% endif %}
             {% if section.image_2 != None %}
-                <img src="{{ url_for('static', filename='img/' + section.image_2) }}" alt="" class="img-center">
+                <img src="{{ url_for('static', filename='img/dynamic/' + section.image_2) }}" alt="" class="img-center">
             {% endif %}
             {% if section.image_3 != None %}
-                <img src="{{ url_for('static', filename='img/' + section.image_3) }}" alt="" class="img-left">
+                <img src="{{ url_for('static', filename='img/dynamic/' + section.image_3) }}" alt="" class="img-left">
             {% endif %}
             {% if section.title != None %}
                 <h1 class="title-left">{{ section.title }}</h1>
@@ -60,6 +60,6 @@
         {% endif %}
     {% endfor %}
     <section>
-        <a href="{{ url_for('contact') }}" class="contact-button">SAY HELLO</a>
+        <a href="{{ url_for('contact') }}" class="contact-button">Say hello</a>
     </section>
 {% endblock %}
